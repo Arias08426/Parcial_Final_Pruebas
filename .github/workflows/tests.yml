@@ -59,7 +59,7 @@ jobs:
     
     - name: Subir reportes
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: playwright-report
         path: tests/playwright-report/
