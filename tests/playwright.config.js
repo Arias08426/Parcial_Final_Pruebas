@@ -8,7 +8,7 @@ export default defineConfig({
   reporter: 'list',
   
   use: {
-    baseURL: 'http://localhost:8080',
+    baseURL: 'http://127.0.0.1:8080',
   },
 
   projects: [
@@ -20,16 +20,16 @@ export default defineConfig({
 
   webServer: [
     {
-      command: 'cd ../backend && python app.py',
+      command: 'cd ../backend && python run.py',
       port: 5000,
-      timeout: 60000,
-      reuseExistingServer: true,
+      timeout: 120000,
+      reuseExistingServer: !process.env.CI,
     },
     {
       command: 'cd ../frontend && python -m http.server 8080',
       port: 8080,
       timeout: 60000,
-      reuseExistingServer: true,
+      reuseExistingServer: !process.env.CI,
     },
   ],
 });

@@ -36,23 +36,6 @@ jobs:
         npm install
         npx playwright install --with-deps chromium
     
-    - name: Iniciar Backend
-      run: |
-        cd backend
-        python run.py > backend.log 2>&1 &
-        sleep 10
-    
-    - name: Iniciar Frontend
-      run: |
-        cd frontend
-        python -m http.server 8080 > frontend.log 2>&1 &
-        sleep 5
-    
-    - name: Verificar servicios
-      run: |
-        curl -f http://localhost:5000/api/doctores || (cat backend/backend.log && exit 1)
-        curl -f http://localhost:8080/ || (cat frontend/frontend.log && exit 1)
-    
     - name: Ejecutar pruebas
       run: |
         cd tests

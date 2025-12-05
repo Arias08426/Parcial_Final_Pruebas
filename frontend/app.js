@@ -1,5 +1,5 @@
 const { useState, useEffect } = React;
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://127.0.0.1:5000/api';
 
 function App() {
     const [pacienteId, setPacienteId] = useState(null);

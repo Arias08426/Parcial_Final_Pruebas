@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 async function resetDatabase() {
-  await fetch('http://localhost:5000/api/reset', { method: 'POST' });
+  await fetch('http://127.0.0.1:5000/api/reset', { method: 'POST' });
 }
 
 test.describe('Pruebas E2E - Sistema de Citas', () => {
