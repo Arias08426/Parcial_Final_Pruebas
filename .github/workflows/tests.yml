@@ -39,19 +39,24 @@ jobs:
     - name: Iniciar Backend
       run: |
         cd backend
-        nohup python app.py > backend.log 2>&1 &
-        sleep 5
+        python app.py > backend.log 2>&1 &
+        sleep 8
+        for i in {1..15}; do curl -s http://localhost:5000/api/doctores && break || sleep 1; done
     
     - name: Iniciar Frontend
       run: |
         cd frontend
-        nohup python -m http.server 8080 > frontend.log 2>&1 &
+        python -m http.server 8080 > frontend.log 2>&1 &
         sleep 3
+        for i in {1..10}; do curl -s http://localhost:8080/ && break || sleep 1; done
     
     - name: Verificar servicios
       run: |
-        curl -f http://localhost:5000/api/doctores || (cat backend/backend.log && exit 1)
-        curl -f http://localhost:8080/ || (cat frontend/frontend.log && exit 1)
+        echo "Verificando backend..."
+        curl -f http://localhost:5000/api/doctores || (echo "Backend no responde:" && cat backend/backend.log && exit 1)
+        echo "Verificando frontend..."
+        curl -f http://localhost:8080/ || (echo "Frontend no responde:" && cat frontend/frontend.log && exit 1)
+        echo "Servicios OK"
     
     - name: Ejecutar pruebas
       run: |
