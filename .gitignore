@@ -1,0 +1,28 @@
+# Ignorar archivos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Ignorar node_modules
+node_modules/
+package-lock.json
+
+# Ignorar archivos de Playwright
+tests/test-results/
+tests/playwright-report/
+tests/.playwright/
+
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
